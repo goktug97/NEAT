@@ -69,20 +69,18 @@ class Genome(object):
             value = 0.0
             if node.type == NodeType.INPUT:
                 value += inputs[node.id]
+            elif node.type == NodeType.BIAS:
+                continue
             for connection in node.inputs:
                 if connection.enabled:
-                    if (connection.in_node.depth >= node.depth):
-                        if connection.in_node.old_value is not None:
-                            value += connection.in_node.old_value * connection.weight
-                    else:
-                        value += connection.in_node.value * connection.weight
+                    value += connection.in_node.value * connection.weight
             node.value = node.activation(value)
         return [node.value for node in self.outputs]
 
     @property
     def size(self):
         return len(list(filter(lambda x: x.enabled, self.connections)))
-        
+
     def copy(self):
         return copy.deepcopy(self)
 

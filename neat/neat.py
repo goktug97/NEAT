@@ -186,7 +186,7 @@ class NEAT(object):
                 species.genomes.pop()
             if not len(species.genomes):
                 self.species.pop(idx)
-                
+
         self.adjust_fitness_scores()
 
         population: List[ContextGenome] = []
@@ -201,8 +201,6 @@ class NEAT(object):
         for group in grouped_population:
             if len(group) > 5:
                 best_genome = max(group, key = lambda x: x.fitness)
-                for node in best_genome.nodes:
-                    node.reset_values()
                 best_genome.generation = self.generation
                 population.append(best_genome)
 

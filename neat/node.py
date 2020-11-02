@@ -21,31 +21,18 @@ class NodeType(Enum):
 class Node(object):
     def __init__(self, id: int, type: NodeType,
                  activation: Callable[[float], float] = passthrough,
-                 value: Union[float, None] = None,
+                 value: float = 0.0,
                  depth: float = 0.0):
         self.id = id
         self.type = type
         self.activation = activation
-        self._value = value
-        self.old_value = None
+        self.value = value
         self.depth = depth
         self.visited = False
 
         if TYPE_CHECKING:
             from .connection import Connection
         self.inputs: List[Connection] = []
-
-    @property
-    def value(self):
-        return self._value
-
-    @value.setter
-    def value(self, value):
-        self.old_value, self._value = self._value, value
-
-    def reset_values(self):
-        self._value = None
-        self.old_value = None
 
     def __hash__(self):
         return hash(str(self.id))

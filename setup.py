@@ -8,7 +8,7 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='NEAT',
-      version='1.0.1',
+      version='1.0.2',
       description='Python Implementation of NEAT Genetic Algorithm',
       author='Göktuğ Karakaşlı',
       author_email='karakasligk@gmail.com',
@@ -16,8 +16,6 @@ setup(name='NEAT',
       long_description=long_description,
       long_description_content_type='text/markdown',
       url='https://github.com/goktug97/NEAT',
-      download_url=(
-          'https://github.com/goktug97/NEAT/archive/v1.0.1.tar.gz'),
       packages = ['neat'],
       classifiers=[
           "Programming Language :: Python :: 3",
